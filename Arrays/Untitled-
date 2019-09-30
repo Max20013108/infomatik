@@ -1,0 +1,13 @@
+public class Mailingliste
+{    
+    public static String[] entfernen(String[] liste, int pos){
+        String[] neueListe = new String[liste.length-1];
+        for (int i=0;i <pos;i=i+1) {
+            neueListe[i]=liste[i];
+        }
+        for (int i=pos+1;i < liste.length;i=i+1){
+            neueListe[i-1]=liste[i];
+        }
+        return neueListe;        
+    }        
+}
