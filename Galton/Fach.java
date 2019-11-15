@@ -1,4 +1,4 @@
-public class Fach
+public class Fach extends GaltonElement
 {
     public int anzahlKugeln;
  

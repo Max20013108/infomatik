@@ -1,9 +1,10 @@
-public class Poeppel{
+public class Poeppel extends GaltonElement
+{
     
-   private Fach links;
-   private Fach rechts;
+   private GaltonElement links;
+   private GaltonElement rechts;
     
-   public Poeppel(Fach l, Fach r){
+   public Poeppel(GaltonElement l, GaltonElement r){
         links =l;
         rechts = r;
    }

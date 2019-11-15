@@ -1,7 +1,6 @@
-
 public class Kugel extends Körper
 {
-    double radius;
+    protected double radius;
 
     public Kugel(double r)
     {
