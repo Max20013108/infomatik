@@ -15,7 +15,7 @@ public class DoubleField extends TextField
         public void keyReleased(KeyEvent e) {
             try {
                 Double.parseDouble(getText());
-                owner.setBackground(Color.WHITE);
+                owner.setBackground(Color.GREEN);
             }
             catch (NumberFormatException fe) {
                 owner.setBackground(Color.RED);
