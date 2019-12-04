@@ -9,12 +9,12 @@ public class Fenster extends Frame
         
         // Komponenten erzeugen
 
-        TextField tf = new IntField(0,10);
-
+        Button tf = new RainbowButton("Los");
+        tf.addMouseListener(new RainbowButton(myMouseListener()));
         
         // Komponenten im Fenster einfügen
 
-        add(tf,BorderLayout.EAST);
+        add(tf,BorderLayout.CENTER);
 
         
         // Fenster anzeigen

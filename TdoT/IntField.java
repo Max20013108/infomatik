@@ -1,7 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 
-public class DoubleField extends TextField 
+
+public class IntField extends TextField 
 {
     public class myKeyAdapter extends KeyAdapter {
         
@@ -14,8 +15,13 @@ public class DoubleField extends TextField
         
         public void keyReleased(KeyEvent e) {
             try {
-                Double.parseDouble(getText());
-                owner.setBackground(Color.GREEN);
+                int a = Integer.parseInt(getText());
+                System.out.println(a);
+                if((a>=-5)&&(a<=5)){owner.setBackground(Color.GREEN);}
+                else{
+
+                    owner.setBackground(Color.RED);
+                }
             }
             catch (NumberFormatException fe) {
                 owner.setBackground(Color.RED);
@@ -23,22 +29,22 @@ public class DoubleField extends TextField
         }
     }
 
-    public DoubleField(String s) {
+    public IntField(String s) {
         super(s);
         addKeyListener(new myKeyAdapter(this));
     }
 
-    public DoubleField(double d,int cul) {
+    public IntField(int d,int cul) {
         super(cul);
-        setDouble(d);
+        setInt(d);
         addKeyListener(new myKeyAdapter(this));
     }
 
-    public double getDouble() {
-        return Double.parseDouble(getText());
+    public int getInt() {
+        return Integer.parseInt(getText());
     }
 
-    public void setDouble(double d) {
+    public void setInt(int d) {
         setText(""+d);
     }
 }

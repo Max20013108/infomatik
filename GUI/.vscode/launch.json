@@ -1,0 +1,74 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-A31",
+            "request": "launch",
+            "mainClass": "A31"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-A32",
+            "request": "launch",
+            "mainClass": "A32"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-BorderDemo",
+            "request": "launch",
+            "mainClass": "BorderDemo"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-EVADemo",
+            "request": "launch",
+            "mainClass": "EVADemo"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Fenster",
+            "request": "launch",
+            "mainClass": "Fenster"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-FreiDemo",
+            "request": "launch",
+            "mainClass": "FreiDemo"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-GridDemo",
+            "request": "launch",
+            "mainClass": "GridDemo"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Handy",
+            "request": "launch",
+            "mainClass": "Handy"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-MeinFrame",
+            "request": "launch",
+            "mainClass": "MeinFrame"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-WindowActionDemo1",
+            "request": "launch",
+            "mainClass": "WindowActionDemo1"
+        }
+    ]
+}
