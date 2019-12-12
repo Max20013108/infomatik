@@ -2,7 +2,7 @@ public class Würfelhoch4{
     public static void main(String[] args){
 
         
-     int[] Anzahl = new int[25];
+     int[] Anzahl = new int[24];
      
      
       for(int i=0; i<=6; i++){
