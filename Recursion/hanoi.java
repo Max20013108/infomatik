@@ -9,12 +9,7 @@ for(int i=1;i<=n;i++){
 return x;
 }
 
-// public static int number2(int n){
 
-// if(){
-
-
-// }
 public static void move(char f, char t){
     System.out.println("Bewege scheibe von "+f+" zu "+t);
 }
@@ -27,11 +22,9 @@ public static void hanoitower(int n,char f,char h,char t){
     }
 }
 
-
-
 public static void main(String[] args){
 
-    hanoitower(10, 'A', 'B', 'C');
+    hanoitower(5, 'A', 'B', 'C');
     System.out.println(number(10));
 }
 
