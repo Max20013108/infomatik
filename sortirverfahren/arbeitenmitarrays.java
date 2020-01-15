@@ -1,4 +1,4 @@
-public class Mailingliste
+public class arbeitenmitarrays
 {    
     public static void print(String print){
         System.out.println(print);
@@ -41,7 +41,6 @@ public class Mailingliste
 
     }
     
-    
 
     public static void main(String[] args){
 
@@ -67,6 +66,7 @@ public class Mailingliste
             System.out.println(s);
         }
         */
+
     M = anhaengen(M,X);
     for(String s : M){
         System.out.println(s);
