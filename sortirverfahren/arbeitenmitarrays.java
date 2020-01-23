@@ -3,8 +3,8 @@ public class arbeitenmitarrays
     public static void print(String print){
         System.out.println(print);
     }
-    public static String[] hinzufügen(String[] liste, int pos, String s){
-        String[] neueListe = new String[liste.length+1];
+    public static int[] hinzufügen(int[] liste, int pos, int s){
+        int[] neueListe = new int[liste.length+1];
         for (int i=0;i <pos;i=i+1) {
             neueListe[i]=liste[i];
         }
@@ -15,8 +15,8 @@ public class arbeitenmitarrays
         return neueListe;        
     }
     
-    public static String[] entfernen(String[] liste, int pos){
-        String[] neueListe = new String[liste.length-1];
+    public static int[] entfernen(int[] liste, int pos){
+        int[] neueListe = new int[liste.length-1];
         for (int i=0;i <pos;i=i+1) {
             neueListe[i]=liste[i];
         }
@@ -25,8 +25,8 @@ public class arbeitenmitarrays
         }
         return neueListe;        
     }
-    public static String[] anhaengen(String[] a, String[] b){
-        String[] neueListe = new String[a.length+b.length];
+    public static int[] anhaengen(int[] a, int[] b){
+        int[] neueListe = new int[a.length+b.length];
         int i = 0;
         while(i<a.length){
             neueListe[i] = a[i];
@@ -67,10 +67,10 @@ public class arbeitenmitarrays
         }
         */
 
-    M = anhaengen(M,X);
-    for(String s : M){
-        System.out.println(s);
-    }
+    // M = anhaengen(M,X);
+    // for(String s : M){
+    //     System.out.println(s);
+    // }
     
     }
 

@@ -1,8 +1,17 @@
+import java.io.*;
 public class Sortieren2
 {
     static int[] l = {632,87426,8736,8735,6514};
 
 
+    public static boolean istSortiert(int[] liste) {
+		for(int i = 1;i< liste.length ;i++ ){
+			if(liste[i]<liste[i-1]){
+				return false;
+			}
+		}
+		return true;
+	}
 
 
     public static void ausgabe(int[] liste) {
@@ -28,17 +37,17 @@ public class Sortieren2
 }
  
 public static int[] zufallsListe(int n){
-        int[] liste2 = new int[n];
+        int[] liste = new int[n];
         int t = 0;
         for(int i=0;i<n;){
-        System.out.println(i);
+        // System.out.println(i);
             t = (int) Math.floor(n*Math.random())+1;
-            if(check(liste2,t)){
-                liste2[i] = t;
+            if(check(liste,t)){
+                liste[i] = t;
                 i++;
             }
             }
-            return liste2;
+            return liste;
         }
 
 
@@ -49,7 +58,7 @@ public static int[] zufallsListe2(int n){
         liste[i]=i+1;
     }
 
-    for(int x=n;x<2*x;x++){
+    for(int x=0;x<2*n;x++){
         liste=tauschen(liste, (int) Math.floor(n*Math.random()), (int) Math.floor(n*Math.random()));
     }
 
@@ -63,9 +72,81 @@ public static int[] tauschen(int[] array, int from, int to){;
     return array;
 }
 
+public static int[] sortieren(int[] array){
+    long start = System.currentTimeMillis();
+    for(int i = 0;i<array.length;i++){
+        array = tauschen(array, indexofsmallestnumber(array, i), i);
+    }
+    long end = System.currentTimeMillis();
+    System.out.println(end-start);
+    return array;
+}
+
+public static int[] sortieren2(int[] array){
+    int[] sortedlist = new int[array.length];
+    int index;
+    long start = System.currentTimeMillis();
+    for(int i = 0;i<sortedlist.length;i++){
+        index = indexofsmallestnumber(array, 0);
+        sortedlist[i]=array[index];
+        array = arbeitenmitarrays.entfernen(array, index);
+    }
+    long end = System.currentTimeMillis();
+    System.out.println(end-start);
+    return sortedlist;
+}
+
+public static int[] sortieren3(int[] array){
+    int n = array.length;
+    long start = System.currentTimeMillis();
+    boolean getauscht = false;
+    while(istSortiert(array)==false){
+        while(getauscht == false){
+        int i1 =  (int) Math.floor(n*Math.random());
+        int i2 =  (int) Math.floor(n*Math.random());
+        if(i1>i2){
+            int a = i1;
+            i1 = i2;
+            i2 = a;
+        }
+        if(array[i1]<array[i2]){
+        array=tauschen(array,i1,i2);
+        getauscht = true;
+     }
+    }
+    }
+    long end = System.currentTimeMillis();
+    System.out.println(end-start);
+   return array; 
+}
+
+
+public static int indexofsmallestnumber(int[] array,int from){
+    int index = from;
+    for(int i =from;i<array.length;i++){
+        if(array[index]>array[i]){
+            index = i;
+        }
+    }
+    return index;
+}
+
+
+
+public static void arrayInDateiSpeichern(String dateiname, int[] liste, boolean anfuegen) throws IOException {
+    PrintWriter datei = new PrintWriter(new FileWriter(dateiname,anfuegen));
+    datei.println("{");
+    for (int i =0; i<liste.length-1;i++) {
+        datei.print(liste[i]+", ");
+    }
+    datei.close();
+}
+
     public static void main(String[] args) {
-        int[] x = zufallsListe2(1000000);
-        // System.out.println(x);
+        int[] x = zufallsListe2(12);
+         x = sortieren3(x);
         ausgabe(x);
+        // String x
+        // textInDateiSpeichern(sortirteliste.txt, ausgabe(x), false);
     }
 }
