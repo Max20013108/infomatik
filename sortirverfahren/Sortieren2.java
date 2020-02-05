@@ -72,6 +72,16 @@ public static int[] tauschen(int[] array, int from, int to){;
     return array;
 }
 
+public static int indexofsmallestnumber(int[] array,int from){
+    int index = from;
+    for(int i =from;i<array.length;i++){
+        if(array[index]>array[i]){
+            index = i;
+        }
+    }
+    return index;
+}
+
 public static int[] sortieren(int[] array){
     long start = System.currentTimeMillis();
     for(int i = 0;i<array.length;i++){
@@ -120,18 +130,54 @@ public static int[] sortieren3(int[] array){
    return array; 
 }
 
-
-public static int indexofsmallestnumber(int[] array,int from){
-    int index = from;
-    for(int i =from;i<array.length;i++){
-        if(array[index]>array[i]){
-            index = i;
+public static int[] bubblesort(int[] array){
+    for(int x = array.length;x>0;x--)
+        for(int i=0;i<(x-1);i++){
+            if(array[i]>array[i+1]){
+               tauschen(array, i, i+1);
+           }
         }
-    }
-    return index;
+    return array;
 }
 
+public static void quicksort(int[] array,int start, int ende){
 
+
+    int index = partition(array, start, ende);
+    if(start<ende||start >=0||ende<array.length){
+    quicksort(array, start, index-1);
+    quicksort(array, index+1, ende);
+    }
+
+}
+
+public static int partitionfalsch(int[] array, int start, int ende){
+    int pivotvalue;
+    int pivind = start;
+    pivotvalue = array[start];
+        for(int i = start;i<=ende;i++){
+            if(array[i]<pivotvalue){
+                tauschen(array, i, pivind);
+                pivind=i;
+            }
+        }
+    return pivind;
+}
+
+public static int partition(int[] array, int start, int ende){
+    int pivotvalue;
+    int pivind = start;
+    pivotvalue = array[start];
+        for(int i = start;i<ende;i++){
+            if(array[i]<pivotvalue){
+                array[i]=array[pivind+1];
+                array[pivind]=array[i];
+                array[pivind+1]=pivotvalue;
+                pivind++;
+            }
+        }
+    return pivind;
+}
 
 public static void arrayInDateiSpeichern(String dateiname, int[] liste, boolean anfuegen) throws IOException {
     PrintWriter datei = new PrintWriter(new FileWriter(dateiname,anfuegen));
@@ -142,11 +188,32 @@ public static void arrayInDateiSpeichern(String dateiname, int[] liste, boolean 
     datei.close();
 }
 
+public static void test(int[] a) {
+    a[0]=1;
+
+}
+
+public static long speed(int n){
+    int[] x = zufallsListe(n);
+    long start = System.currentTimeMillis();
+    x = sortieren(x);
+    long ende = System.currentTimeMillis();
+    return ende-start;
+}
     public static void main(String[] args) {
-        int[] x = zufallsListe2(12);
-         x = sortieren3(x);
+        
+    
+        int[] x = {7,11,6,8,1,3,4,5,9,10,12,2};
         ausgabe(x);
-        // String x
-        // textInDateiSpeichern(sortirteliste.txt, ausgabe(x), false);
+        int a = partition(x, 0, x.length-1);
+        ausgabe(x);
+        System.out.println(a);
+        // System.out.println(a);
+        
+
+        // int[]a ={2,3,4};
+        // ausgabe(a);
+        // test(a);
+        // ausgabe(a);
     }
 }

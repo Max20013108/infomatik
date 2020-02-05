@@ -1,8 +1,24 @@
 public class arbeitenmitarrays
 {    
-    public static void print(String print){
-        System.out.println(print);
+    public static int[] verschieben(int[] liste, int from, int to){
+        int[] neueliste = new int[liste.length];
+            for(int i =0;i<to;i++){
+                if(i!=from){
+                    neueliste[i]=liste[i];
+                }
+            }
+            neueliste[to]=liste[from];
+            for(int i =to;i<liste.length-1;i++){
+                if(i!=from){
+                    neueliste[i+1]=liste[i];
+                }
+            }
+            return neueliste;
     }
+
+
+
+
     public static int[] hinzufügen(int[] liste, int pos, int s){
         int[] neueListe = new int[liste.length+1];
         for (int i=0;i <pos;i=i+1) {
@@ -40,6 +56,14 @@ public class arbeitenmitarrays
         return neueListe;
 
     }
+
+    public static void ausgabe(int[] liste) {
+        System.out.print("{");
+        for (int i =0; i<liste.length-1;i++) {
+            System.out.print(liste[i]+", ");
+        }
+        System.out.println(liste[liste.length-1]+"}");
+    }
     
 
     public static void main(String[] args){
@@ -54,7 +78,8 @@ public class arbeitenmitarrays
             "nicole.weber@gmx.de"
         };
 
-        String[] X = {"a","b","c","d"};
+        
+        // String[] X = {"a","b","c","d"};
         /*
         M = hinzufügen(M,5,"hallo@hallo.com");
         for(String s : M){
@@ -72,6 +97,12 @@ public class arbeitenmitarrays
     //     System.out.println(s);
     // }
     
-    }
+    int[] test =  {87, 31 , 12, 43, 42, 99, 13};
+        ausgabe(verschieben(test,1,2));
 
+
+
+    }
 }
+
+
