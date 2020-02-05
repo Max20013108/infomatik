@@ -142,27 +142,29 @@ public static int[] bubblesort(int[] array){
 
 public static void quicksort(int[] array,int start, int ende){
 
-
+if(start<ende){
     int index = partition(array, start, ende);
-    if(start<ende||start >=0||ende<array.length){
     quicksort(array, start, index-1);
     quicksort(array, index+1, ende);
     }
-
 }
 
-public static int partitionfalsch(int[] array, int start, int ende){
-    int pivotvalue;
-    int pivind = start;
-    pivotvalue = array[start];
-        for(int i = start;i<=ende;i++){
-            if(array[i]<pivotvalue){
-                tauschen(array, i, pivind);
-                pivind=i;
-            }
-        }
-    return pivind;
-}
+
+
+// public static int partitionfalsch(int[] array, int start, int ende){
+//     int pivotvalue;
+//     int pivind = start;
+//     pivotvalue = array[start];
+//     if(start<ende){
+//         for(int i = start;i<=ende;i++){
+//             if(array[i]<pivotvalue){
+//                 tauschen(array, i, pivind);
+//                 pivind=i;
+//             }
+//         }
+//     }
+//     return pivind;
+// }
 
 public static int partition(int[] array, int start, int ende){
     int pivotvalue;
@@ -170,8 +172,8 @@ public static int partition(int[] array, int start, int ende){
     pivotvalue = array[start];
         for(int i = start;i<ende;i++){
             if(array[i]<pivotvalue){
-                array[i]=array[pivind+1];
                 array[pivind]=array[i];
+                array[i]=array[pivind+1];
                 array[pivind+1]=pivotvalue;
                 pivind++;
             }
@@ -194,26 +196,17 @@ public static void test(int[] a) {
 }
 
 public static long speed(int n){
-    int[] x = zufallsListe(n);
+    int[] x = zufallsListe2(n);
     long start = System.currentTimeMillis();
-    x = sortieren(x);
+    quicksort(x,0,x.length);
     long ende = System.currentTimeMillis();
     return ende-start;
 }
     public static void main(String[] args) {
-        
-    
-        int[] x = {7,11,6,8,1,3,4,5,9,10,12,2};
-        ausgabe(x);
-        int a = partition(x, 0, x.length-1);
-        ausgabe(x);
-        System.out.println(a);
-        // System.out.println(a);
-        
+        for(int i = 1000000; i<=100000000;i=i+1000000){
+            long t = speed(i);
+            System.out.println(i+":"+t);
+        }
 
-        // int[]a ={2,3,4};
-        // ausgabe(a);
-        // test(a);
-        // ausgabe(a);
     }
 }
