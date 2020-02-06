@@ -36,7 +36,7 @@ public class Sortieren2
     return tf;
 }
  
-public static int[] zufallsListe(int n){
+public static int[] zufallsListedumm(int n){
         int[] liste = new int[n];
         int t = 0;
         for(int i=0;i<n;){
@@ -52,7 +52,7 @@ public static int[] zufallsListe(int n){
 
 
 
-public static int[] zufallsListe2(int n){
+public static int[] zufallsListe(int n){
     int[] liste = new int[n];
     for(int i = 0;i<n;i++){
         liste[i]=i+1;
@@ -82,33 +82,26 @@ public static int indexofsmallestnumber(int[] array,int from){
     return index;
 }
 
-public static int[] sortieren(int[] array){
-    long start = System.currentTimeMillis();
+public static int[] searchsmallestsort(int[] array){
     for(int i = 0;i<array.length;i++){
         array = tauschen(array, indexofsmallestnumber(array, i), i);
     }
-    long end = System.currentTimeMillis();
-    System.out.println(end-start);
     return array;
 }
 
-public static int[] sortieren2(int[] array){
+public static int[] newlistsort(int[] array){
     int[] sortedlist = new int[array.length];
     int index;
-    long start = System.currentTimeMillis();
     for(int i = 0;i<sortedlist.length;i++){
         index = indexofsmallestnumber(array, 0);
         sortedlist[i]=array[index];
         array = arbeitenmitarrays.entfernen(array, index);
     }
-    long end = System.currentTimeMillis();
-    System.out.println(end-start);
     return sortedlist;
 }
 
-public static int[] sortieren3(int[] array){
+public static int[] randomsort(int[] array){
     int n = array.length;
-    long start = System.currentTimeMillis();
     boolean getauscht = false;
     while(istSortiert(array)==false){
         while(getauscht == false){
@@ -125,8 +118,6 @@ public static int[] sortieren3(int[] array){
      }
     }
     }
-    long end = System.currentTimeMillis();
-    System.out.println(end-start);
    return array; 
 }
 
@@ -183,10 +174,18 @@ public static int partition(int[] array, int start, int ende){
 
 public static void arrayInDateiSpeichern(String dateiname, int[] liste, boolean anfuegen) throws IOException {
     PrintWriter datei = new PrintWriter(new FileWriter(dateiname,anfuegen));
-    datei.println("{");
+    datei.print("{");
     for (int i =0; i<liste.length-1;i++) {
         datei.print(liste[i]+", ");
     }
+    datei.print("}");
+    datei.println("");
+    datei.close();
+}
+
+public static void textInDateiSpeichern(String dateiname, String text, boolean anfuegen) throws IOException {
+    PrintWriter datei = new PrintWriter(new FileWriter(dateiname,anfuegen));
+    datei.println(text);
     datei.close();
 }
 
@@ -196,17 +195,96 @@ public static void test(int[] a) {
 }
 
 public static long speed(int n){
-    int[] x = zufallsListe2(n);
+    int[] x = zufallsListe(n);
     long start = System.currentTimeMillis();
     quicksort(x,0,x.length);
     long ende = System.currentTimeMillis();
     return ende-start;
 }
-    public static void main(String[] args) {
-        for(int i = 1000000; i<=100000000;i=i+1000000){
-            long t = speed(i);
-            System.out.println(i+":"+t);
-        }
+public static void main(String[] args)throws IOException {
+    int[][] lists = new int[100][];
+    long start;
+    long ende;
+    long t;
+    String s;
+    int a = 0;
+    System.out.println("Program start");
+    start = System.currentTimeMillis();
+    int anzahl = 1000000;
+    for(int i = anzahl;i<=anzahl*100;i=i+anzahl){
+        int[] x = zufallsListe(i);
+        lists[a] = x;
+        a++;
+    }
+    ende = System.currentTimeMillis();
+
+    System.out.println("Arrays erstellt. Dauer: "+(ende-start));
+
+    int[] x;
+
+    System.out.println("start searchsmallestsort");
+    textInDateiSpeichern("times.txt", "Start searchsmallestsort", false);
+
+    for(int i = 0;i<=lists.length-1;i++){
+        x = lists[i];
+        start = System.currentTimeMillis();
+        searchsmallestsort(x);
+        ende = System.currentTimeMillis();
+        t = ende - start;
+        s = x.length+":"+t;
+        textInDateiSpeichern("times.txt", s, true);
+    }
+
+    textInDateiSpeichern("times.txt", "Ende searchsmallestsort", true);
+    System.out.println("ende searchsmallestsort");
+
+    System.out.println("start newlistsort");
+    textInDateiSpeichern("times.txt", "Start newlistsort", true);
+
+    for(int i = 0;i<=lists.length-1;i++){
+        x = lists[i];
+        start = System.currentTimeMillis();
+        newlistsort(x);
+        ende = System.currentTimeMillis();
+        t = ende - start;
+        s = x.length+":"+t;
+        textInDateiSpeichern("times.txt", s, true);
+    }
+
+    textInDateiSpeichern("times.txt", "Ende newlistsort", true);
+    System.out.println("ende newlistsort");
+
+    System.out.println("start bubblesort");
+    textInDateiSpeichern("times.txt", "Start bubblesort", true);
+
+    for(int i = 0;i<=lists.length-1;i++){
+        x = lists[i];
+        start = System.currentTimeMillis();
+        bubblesort(x);
+        ende = System.currentTimeMillis();
+        t = ende - start;
+        s = x.length+":"+t;
+        textInDateiSpeichern("times.txt", s, true);
+    }
+
+    textInDateiSpeichern("times.txt", "Ende bubblesort", true);
+    System.out.println("ende newlistsort");
+
+    System.out.println("start quicksort");
+    textInDateiSpeichern("times.txt", "Start quicksort", true);
+
+    for(int i = 0;i<=lists.length-1;i++){
+        x = lists[i];
+        start = System.currentTimeMillis();
+        quicksort(x,0,x.length);
+        ende = System.currentTimeMillis();
+        t = ende - start;
+        s = x.length+":"+t;
+        textInDateiSpeichern("times.txt", s, true);
+    }
+
+    textInDateiSpeichern("times.txt", "Ende quicksort", true);
+    System.out.println("ende quicksort");
 
     }
 }

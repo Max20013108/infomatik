@@ -19,7 +19,7 @@ public class arbeitenmitarrays
 
 
 
-    public static int[] hinzufügen(int[] liste, int pos, int s){
+    public static int[] hinzufuegen(int[] liste, int pos, int s){
         int[] neueListe = new int[liste.length+1];
         for (int i=0;i <pos;i=i+1) {
             neueListe[i]=liste[i];
