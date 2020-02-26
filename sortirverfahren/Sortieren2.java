@@ -82,14 +82,14 @@ public static int indexofsmallestnumber(int[] array,int from){
     return index;
 }
 
-public static int[] searchsmallestsort(int[] array){
+public static int[] SelectionSort(int[] array){
     for(int i = 0;i<array.length;i++){
         array = tauschen(array, indexofsmallestnumber(array, i), i);
     }
     return array;
 }
 
-public static int[] newlistsort(int[] array){
+public static int[] InsertionSort(int[] array){
     int[] sortedlist = new int[array.length];
     int index;
     for(int i = 0;i<sortedlist.length;i++){
@@ -132,30 +132,12 @@ public static int[] bubblesort(int[] array){
 }
 
 public static void quicksort(int[] array,int start, int ende){
-
-if(start<ende){
-    int index = partition(array, start, ende);
-    quicksort(array, start, index-1);
-    quicksort(array, index+1, ende);
+    if(start<ende){
+        int index = partition(array, start, ende);
+        quicksort(array, start, index-1);
+        quicksort(array, index+1, ende);
+        }
     }
-}
-
-
-
-// public static int partitionfalsch(int[] array, int start, int ende){
-//     int pivotvalue;
-//     int pivind = start;
-//     pivotvalue = array[start];
-//     if(start<ende){
-//         for(int i = start;i<=ende;i++){
-//             if(array[i]<pivotvalue){
-//                 tauschen(array, i, pivind);
-//                 pivind=i;
-//             }
-//         }
-//     }
-//     return pivind;
-// }
 
 public static int partition(int[] array, int start, int ende){
     int pivotvalue;
@@ -194,6 +176,14 @@ public static void test(int[] a) {
 
 }
 
+public static int[] copyarray(int[] array){
+    int[] copy = new int[array.length];
+    for(int i = 0; i<array.length;i++){
+        copy[i] = array[i];
+    }
+    return copy;
+}
+
 public static long speed(int n){
     int[] x = zufallsListe(n);
     long start = System.currentTimeMillis();
@@ -210,7 +200,7 @@ public static void main(String[] args)throws IOException {
     int a = 0;
     System.out.println("Program start");
     start = System.currentTimeMillis();
-    int anzahl = 1000000;
+    int anzahl = 10000;
     for(int i = anzahl;i<=anzahl*100;i=i+anzahl){
         int[] x = zufallsListe(i);
         lists[a] = x;
@@ -226,9 +216,9 @@ public static void main(String[] args)throws IOException {
     textInDateiSpeichern("times.txt", "Start searchsmallestsort", false);
 
     for(int i = 0;i<=lists.length-1;i++){
-        x = lists[i];
+        x = copyarray(lists[i]);
         start = System.currentTimeMillis();
-        searchsmallestsort(x);
+        SelectionSort(x);
         ende = System.currentTimeMillis();
         t = ende - start;
         s = x.length+":"+t;
@@ -242,9 +232,9 @@ public static void main(String[] args)throws IOException {
     textInDateiSpeichern("times.txt", "Start newlistsort", true);
 
     for(int i = 0;i<=lists.length-1;i++){
-        x = lists[i];
+        x = copyarray(lists[i]);
         start = System.currentTimeMillis();
-        newlistsort(x);
+        InsertionSort(x);
         ende = System.currentTimeMillis();
         t = ende - start;
         s = x.length+":"+t;
@@ -258,7 +248,7 @@ public static void main(String[] args)throws IOException {
     textInDateiSpeichern("times.txt", "Start bubblesort", true);
 
     for(int i = 0;i<=lists.length-1;i++){
-        x = lists[i];
+        x = copyarray(lists[i]);
         start = System.currentTimeMillis();
         bubblesort(x);
         ende = System.currentTimeMillis();
@@ -274,9 +264,9 @@ public static void main(String[] args)throws IOException {
     textInDateiSpeichern("times.txt", "Start quicksort", true);
 
     for(int i = 0;i<=lists.length-1;i++){
-        x = lists[i];
+        x = copyarray(lists[i]);
         start = System.currentTimeMillis();
-        quicksort(x,0,x.length);
+        quicksort(x,0,x.length-1);
         ende = System.currentTimeMillis();
         t = ende - start;
         s = x.length+":"+t;
@@ -285,6 +275,5 @@ public static void main(String[] args)throws IOException {
 
     textInDateiSpeichern("times.txt", "Ende quicksort", true);
     System.out.println("ende quicksort");
-
     }
 }
